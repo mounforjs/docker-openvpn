@@ -1,12 +1,18 @@
+## INSTRUCTIONS
+
+**1. Defining volume name variable.**
 
 OVPN_DATA="docker-openvpn_ovpn-data"
 
-1) docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn ovpn_genconfig -u udp://vpn.dummydomain.click
-2) docker-compose run -v $OVPN_DATA:/etc/openvpn --rm -it vpn ovpn_initpki
+**2. Create the volume**
+docker volume create --name $OVPN_DATA
 
-docker-compose run -v $OVPN_DATA:/etc/openvpn --rm -it vpn easyrsa build-client-full CLIENTNAME nopass
+**3. Generate configuration**
+
+(It will ask for a phase to define keys. You can use any type of word)
+docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn ovpn_genconfig -u udp://vpn.dummydomain.click
+docker-compose run -v $OVPN_DATA:/etc/openvpn --rm  vpn ovpn_initpki
+
+**4. Generate client files**
+docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn easyrsa build-client-full CLIENTNAME nopass
 docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
-
-
-
-docker run -d -p 1194:1194/udp --cap-add=NET_ADMIN test/openvpn
