@@ -11,7 +11,9 @@ docker volume create --name $OVPN_DATA
 **3. Generate configuration**
 
 (It will ask for a phase to define keys. You can use any type of word)
+
 docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn ovpn_genconfig -u udp://vpn.dummydomain.click
+
 docker-compose run -v $OVPN_DATA:/etc/openvpn --rm  vpn ovpn_initpki
 
 **4. Generate client files**
