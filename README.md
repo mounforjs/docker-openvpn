@@ -1,10 +1,11 @@
 ## INSTRUCTIONS
 
-**1. Defining volume name variable.**
+**1. Define volume name variable**
 
 OVPN_DATA="docker-openvpn_ovpn-data"
 
 **2. Create the volume**
+
 docker volume create --name $OVPN_DATA
 
 **3. Generate configuration**
