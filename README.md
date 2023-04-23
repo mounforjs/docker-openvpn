@@ -26,4 +26,5 @@ docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn easyrsa build-client-full
 docker-compose run -v $OVPN_DATA:/etc/openvpn --rm vpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
 
 This last command is going to generate the client configuration file that will allow you 
-to connect from your PC or mobile device.
+to connect from your PC or mobile device. The fle gets created in the same directory from where you
+are executing it.
